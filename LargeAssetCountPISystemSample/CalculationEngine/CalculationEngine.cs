@@ -23,6 +23,7 @@ namespace CalculationEngine
         private const int PIPageSize = 1000;
         private const int HoursToRollup = 336; // two weeks 
         private const int MaxParallel = 4;
+        private readonly TimeSpan PIDataReadTimeout = new TimeSpan(1, 0, 0);
 
         private const string FluctuationIndexReportFile = @"FluctuationIndexReport";
         private const string BranchOutlierReportFile = @"BranchOutlierReport";
@@ -39,7 +40,7 @@ namespace CalculationEngine
         public CalculationEngine(Settings settings)
         {
             _settings = settings;
-            _pagingConfig = new PIPagingConfiguration(PIPageType.TagCount, PIPageSize, new TimeSpan(1, 0, 0));
+            _pagingConfig = new PIPagingConfiguration(PIPageType.TagCount, PIPageSize, PIDataReadTimeout);
         }
 
         /// <summary>
